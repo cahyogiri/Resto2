@@ -155,6 +155,21 @@ router.post('/update/:id', function(req, res, next) {
     }
 })
 
+/**
+ * DELETE POST
+ */
+router.get('/delete/(:id)', function(req, res, next) {
+    const id = req.params.id;
+    connection.query('DELETE FROM posts WHERE id = ' + id, function(err, result) {
+        if (err) {
+            req.flash('error', err)
+            res.redirect('/posts')
+        } else {
+            req.flash('success', 'Data Berhasil Dihapus!')
+            res.redirect('/posts')
+        }
+    })
+})
 
 
 
